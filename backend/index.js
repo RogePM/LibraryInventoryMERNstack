@@ -1,40 +1,20 @@
 import express from 'express';
 import { PORT , mongoDBURL } from './config.js';
 import mongoose from 'mongoose';
+import bookRoute from './routes/bookRoute.js';
 import { Book } from './models/bookmodel.js';
 
 const app = express();
+//middleware
+app.use(express.json()); 
 
 app.get('/', (request, response) => {
     console.log(request);
     return response.status(234).send('Welcome!');
-});
+}); 
 
-//Route for Save a new book
-app.post('/book', async (request, response) => {
-    try {
-        if(
-            !request.body.title ||
-            !request.body.author ||
-            !request.body.year
-        ) {
-            return response.status(400).send({
-                 message: 'Please fill all required fields' 
-                });
-        }
-        const newBook= {
-            title: request.body.title,
-            author: request.body.author,
-            year: request.body.year,
-        };
-        const book = await Book.create(newBook);
+app.use('/books', bookRoute);
 
-        return response.status(201).send(book);
-    } catch(error) {
-        console.log('There is an error', error);
-        return response.status(500).send({ message: error.message });
-    }
-});
 mongoose
 .connect (mongoDBURL) 
 .then(() => {
