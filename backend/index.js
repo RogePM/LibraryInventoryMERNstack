@@ -5,8 +5,21 @@ import bookRoute from './routes/bookRoute.js';
 import { Book } from './models/bookmodel.js';
 
 const app = express();
-//middleware
+//middleware for parsing json data
 app.use(express.json()); 
+
+//middleware for handling CORS Policy 
+//Option 1: allow origins with default of cors(*)
+app.use(cors());
+//Option 2: allow origins with specific origins
+app.use(
+    corse({
+        origin: 'http://localhost:3000',
+        methods: ['GET', 'POST', 'PUT', 'DELETE'],
+        allowedHeaders: ['Content-Type'],
+    })
+
+)
 
 app.get('/', (request, response) => {
     console.log(request);
