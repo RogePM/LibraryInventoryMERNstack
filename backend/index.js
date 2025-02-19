@@ -13,13 +13,13 @@ app.use(express.json());
 //Option 1: allow origins with default of cors(*)
 app.use(cors());
 //Option 2: allow origins with specific origins
-//app.use(
-//    cors({
-//        origin: 'http://localhost:3000',
-//        methods: ['GET', 'POST', 'PUT', 'DELETE'],
-//        allowedHeaders: ['Content-Type'],
-//    })
-//);
+//  app.use(
+//      cors({
+//          origin: 'http://localhost:3000',
+//          methods: ['GET', 'POST', 'PUT', 'DELETE'],
+//          allowedHeaders: ['Content-Type'],
+//      })
+//  );
 
 app.get('/', (request, response) => {
     console.log(request);
@@ -39,4 +39,5 @@ mongoose
     .catch((error) => {
         console.log('THeres an error', error);
     });
+
 

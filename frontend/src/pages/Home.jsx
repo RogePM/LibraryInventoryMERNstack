@@ -13,7 +13,7 @@ const Home = () => {
     useEffect(() => {
         setLoading(true);
         axios
-            .get('http://localhost:5000/books')
+            .get('http://localhost:5555/books')
             .then((response) => {
                 setBooks(response.data.data);
                 setLoading(false);
@@ -29,7 +29,6 @@ const Home = () => {
                 <h1 className='text-3xl my-8'>Book List</h1>
                 <Link to='/books/create' className='bg-green-500 text-white p-2 rounded-md flex items-center'>
                     <MdOutlineAddBox className='text-sky-800 text-4xl' />
-                    <span className='ml-2'>Add Book</span>
                 </Link>
             </div>
             {loading ? (
