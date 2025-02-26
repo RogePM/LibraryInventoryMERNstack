@@ -8,14 +8,13 @@ import { Book } from './models/bookmodel.js';
 const app = express();
 //middleware for parsing json data
 app.use(express.json());
-
 //middleware for handling CORS Policy 
 //Option 1: allow origins with default of cors(*)
-app.use(cors());
-//Option 2: allow origins with specific origins
+ app.use(cors());
+// Option 2: allow origins with specific origins
 //  app.use(
 //      cors({
-//          origin: 'http://localhost:3000',
+//          origin: 'http://localhost:5173',
 //          methods: ['GET', 'POST', 'PUT', 'DELETE'],
 //          allowedHeaders: ['Content-Type'],
 //      })
@@ -23,7 +22,7 @@ app.use(cors());
 
 app.get('/', (request, response) => {
     console.log(request);
-    return response.status(234).send('Welcome!');
+    return response.status(234).send('Welcome to the App im making!');
 });
 
 app.use('/books', bookRoute);
@@ -39,5 +38,7 @@ mongoose
     .catch((error) => {
         console.log('THeres an error', error);
     });
+
+    
 
 

@@ -10,12 +10,14 @@ import { MdOutlineAddBox, MdOutlineDelete } from 'react-icons/md';
 const Home = () => {
     const [books, setBooks] = useState([]);
     const [loading, setLoading] = useState(false);
+
     useEffect(() => {
         setLoading(true);
         axios
             .get('http://localhost:5555/books')
             .then((response) => {
-                setBooks(response.data.data);
+                console.log('API Response:', response);  // Check the response structure in the console
+                setBooks(response.data?.data || []);  // Extract the data from the response object
                 setLoading(false);
             })
             .catch((error) => {
@@ -27,14 +29,14 @@ const Home = () => {
         <div className='p-4'>
             <div className='flex justify-between items-center'>
                 <h1 className='text-3xl my-8'>Book List</h1>
-                <Link to='/books/create' className='bg-green-500 text-white p-2 rounded-md flex items-center'>
+                <Link to='/books/create'    >
                     <MdOutlineAddBox className='text-sky-800 text-4xl' />
                 </Link>
             </div>
             {loading ? (
                 <Spinner />
             ) : (
-                <table className='w-full border-separate-2'>
+                <table className='w-full border-separate border-2'>
                     <thead>
                         <tr>
                             <th className='border-slate-600 rounded-md'> No </th>
@@ -50,10 +52,10 @@ const Home = () => {
                                 <td className='border-slate-700 rounded-md'>{index + 1}</td>
                                 <td className='border-slate-700 rounded-md'>{book.title}</td>
                                 <td className='border-slate-700 rounded-md max-md:hidden'>{book.author}</td>
-                                <td className='border-slate-700 rounded-md max-md:hidden'>{book.publishYear}</td>
+                                <td className='border-slate-700 rounded-md max-md:hidden'>{book.year}</td>
                                 <td className='border-slate-700 rounded-md'>
                                     <div className='flex justify-center gap-x-4'>
-                                        <Link to={`/books/edit/${book._id}`} >
+                                        <Link to={`/books/details/${book._id}`} >
                                             <BsInfoCircle className='text-2xl text-green-800' />
                                         </Link>
                                         <Link to={`/books/edit/${book._id}`} >
@@ -70,7 +72,7 @@ const Home = () => {
                 </table>
             )}
         </div>
-    )
-}
+    );
+};
 
 export default Home
