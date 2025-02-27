@@ -14,7 +14,7 @@ const Home = () => {
     useEffect(() => {
         setLoading(true);
         axios
-            .get('http://localhost:5555/books')
+            .get('http://localhost:5556/books')
             .then((response) => {
                 console.log('API Response:', response);  // Check the response structure in the console
                 setBooks(response.data?.data || []);  // Extract the data from the response object
@@ -59,10 +59,10 @@ const Home = () => {
                                             <BsInfoCircle className='text-2xl text-green-800' />
                                         </Link>
                                         <Link to={`/books/edit/${book._id}`} >
-                                            <AiOutlineEdit className='text-2xl text-red-800' />
+                                            <AiOutlineEdit className='text-2xl text-yellow-800' />
                                         </Link>
                                         <Link to={`/books/delete/${book._id}`} >
-                                            <MdOutlineDelete className='text-2xl text-yellow-800' />
+                                            <MdOutlineDelete className='text-2xl text-red-800' />
                                         </Link>
                                     </div>
                                 </td>

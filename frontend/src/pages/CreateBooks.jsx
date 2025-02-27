@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import BackButton from '../components/BackButton'
 import Spinner from '../components/Spinner'
 import axios from 'axios'
-import { useHistory, useNavigate } from 'react-router-dom'
+import {useNavigate } from 'react-router-dom'
 
 
 const CreateBooks = () => {
@@ -19,7 +19,7 @@ const CreateBooks = () => {
     };
     setLoading(true);
     axios
-      .post('http://localhost:5555/books', data)
+      .post('http://localhost:5556/books', data)
       .then(() => {
         setLoading(false);
         navigate('/');
