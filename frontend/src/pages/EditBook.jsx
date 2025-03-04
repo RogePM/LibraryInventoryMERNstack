@@ -34,7 +34,7 @@ const EditBook = () => {
     };
     setLoading(true);
     axios
-      .put(`http://localhost:5556/books/${id}`, data)
+      .put(`http://localhost:9000/books/${id}`, data)
       .then(() => {
         setLoading(false);
         navigate('/');
